@@ -85,9 +85,16 @@ def convertList(images):
     global imageList
     imageList = []
     for i in images:
-        img = invert(gray(resize(transform(i))))
-        # img = transform(i)
-        plt.imshow(img.permute(1,2,0))
+        # img = invert(gray(resize(transform(i))))
+        # img = invert(resize(transform(i)))
+
+        img = transform(i)
+        img = resize(img)
+        img = gray(img)
+        img = invert(img)
+        print(img.shape)
+        # print(img)
+        # plt.imshow(img.permute(1,2,0))
         # plt.show()
         # img = resize(transform(i))
         imageList.append(img)
