@@ -39,15 +39,14 @@ model = nn.Sequential(nn.Linear(input_size, hidden_sizes[0]),
                       nn.Linear(hidden_sizes[1], output_size),
                       nn.LogSoftmax(dim=1))
 
-# load the trained model to the newly made model
+# load the trained model
 model.load_state_dict(torch.load('_model_'))
 
 
 
 # this function shows the plottes predicition with the given image
 def view_classify(img, ps):
-    ''' Function for viewing an image and it's predicted classes.
-    '''
+
     ps = ps.data.numpy().squeeze()
 
     fig, (ax1, ax2) = plt.subplots(figsize=(6,9), ncols=2)
@@ -64,14 +63,12 @@ def view_classify(img, ps):
 
 # function to receive the images
 def receiveImages():
-    # im = Image.open("pic2.png")
+
     image = Image.open("digit_0.jpg")
     image1= Image.open("digit_1.jpg")
     image2= Image.open("digit_2.jpg")
     image3= Image.open("digit_3.jpg")
     image4= Image.open("digit_4.jpg")
-
-    # imageList.append(im)
 
     imageList.append(image)
     imageList.append(image1)
@@ -85,37 +82,32 @@ def convertList(images):
     global imageList
     imageList = []
     for i in images:
-        # img = invert(gray(resize(transform(i))))
-        # img = invert(resize(transform(i)))
 
         img = transform(i)
         img = resize(img)
         img = gray(img)
         img = invert(img)
-        print(img.shape)
-        # print(img)
-        # plt.imshow(img.permute(1,2,0))
-        # plt.show()
-        # img = resize(transform(i))
         imageList.append(img)
 
 # function which makes predictions based on the given image
 def predict(img):
+
+    # resize the image to 1 by 784 to feed the network
     img = img.view(1,784)
+
+    # turn of grad to speed up process
     with torch.no_grad():
         logps = model(img)
-    # print(logps)
 
-    # # Output of the network are log-probabilities, need to take exponential for probabilities
+    # Output of the network are log-probabilities, need to take exponential for probabilities
     ps = torch.exp(logps)
-    # print(ps)
+
+    # list al the probabilities 
     probab = list(ps.numpy()[0])
-    # print(probab)
+
     print("Predicted Digit =", probab.index(max(probab)))
 
     view_classify(img.view(28,28), ps)
-
-    plt.show()
 
     return probab.index(max(probab))
 
@@ -129,7 +121,7 @@ def reassign(list):
 
 receiveImages()    
 convertList(imageList)
-# for i in imageList:
-#     plt.show()
-
 reassign(imageList)
+
+# #show the probabilities plots
+# plt.show()

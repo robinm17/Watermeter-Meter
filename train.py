@@ -65,7 +65,7 @@ print('Gradient -', model[0].weight.grad)
 optimizer.step()
 print('Updated weights - ', model[0].weight)
 
-
+# training the model
 optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 time0 = time()
 epochs = 15
