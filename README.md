@@ -8,7 +8,7 @@ requirements.txt contains all necessery libs to run the code.
 
 #### training the model:
 
-Code for training the model is in: **train.py** [code](train.py)
+Code for training the model is in: [**train.py**](train.py)
 
 For the model training we use the MNIST data set which contains images of handwritten digits with their corresponding labels
 ![download](https://user-images.githubusercontent.com/43373858/216311685-33c820b6-037d-4f39-819b-3bf5e22693f9.png)
