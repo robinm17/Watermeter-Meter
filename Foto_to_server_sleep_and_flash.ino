@@ -29,15 +29,11 @@
 
 #define FLASH_PIN 4
  
+const char* ssid = "WIFI_SSID";             /* Wi-Fi settings */
+const char* password = "WIFI_PASS";
 
-// const char* ssid = "TP-Link_WiFi24_EXT";
-// const char* password = "Snelgoed88!";
-
-const char* ssid = "Tesla IoT";             /* Wi-Fi settings */
-const char* password = "fsL6HgjN";
-
-String serverName = "145.24.222.249";   /* server settings */  
-String serverPath = "/upload.php";     
+String serverName = "Server_IP";   /* server settings */  
+String serverPath = "UPLOAD_DIR";     
 
 const int serverPort = 80;
 
